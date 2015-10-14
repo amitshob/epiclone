@@ -12,7 +12,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def previous
-    if self.number <= Lesson.last.number
+    if self.number <= Lesson.first.number
       return self
     else
       return Lesson.where("number < (?)", self.number).last
