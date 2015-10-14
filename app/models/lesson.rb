@@ -1,14 +1,21 @@
 class Lesson < ActiveRecord::Base
+  belongs_to :section
   validates :title, :presence => true
 
-end
+  def next
+    if self.number >= Lesson.last.number
+      return self
+    else
+      return Lesson.where("number > (?)", self.number).first
+    end
 
-def previous
-  # Lesson.where(["number < ?", number]).last
-  self.class.first(:conditions => ["number < ?", number], :order => "number desc")
-end
+  end
 
-def next
-  # Lesson.where(["number < ?", number]).next
-  self.class.first(:conditions => ["title > ?", title], :order => "title asc")
+  def previous
+    if self.number <= Lesson.last.number
+      return self
+    else
+      return Lesson.where("number < (?)", self.number).last
+    end
+  end
 end

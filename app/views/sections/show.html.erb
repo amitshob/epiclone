@@ -1,0 +1,13 @@
+<h1><%= @section.title %></h1>
+
+<% if @sections.lessons.any? %>
+  <h4>Here are the tasks for this list:</h4>
+
+  <ul>
+    <% @sections.lessons.each do |lesson| %>
+      <li><%= link_to lesson.title, lesson_path(lesson) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no tasks yet!</p>
+<% end %>

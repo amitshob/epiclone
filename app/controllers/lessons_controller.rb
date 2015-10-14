@@ -42,11 +42,6 @@ class LessonsController < ApplicationController
     redirect_to lessons_path
   end
 
-  
-
-
-
-
 
   private
     def lesson_params
